@@ -1,20 +1,29 @@
 name: Docker Build and Push
 
 on:
+  #   push:
+  #     branches: ["main"]
+  #     paths:
+  #       - "Dockerfile" # Only run workflow when Dockerfile is changed
+  #   pull_request:
+  #     branches: ["main"]
+  #     paths:
+  #       - "Dockerfile"
+
   [workflow_dispatch]
 
-
 jobs:
-    publish_image:
-        runs-on: ubuntu-latest
+  publish_image:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-            - name: Build Docker image
-              run: docker build -t prodanish203/text-toolkit-python .
+      - name: Build Docker image
+        run: docker build -t prodanish203/text-toolkit-python .
 
-            - name: Push to DockerHub
-              run: |
-                docker push prodanish203/text-toolkit-python
+      - name: Push to DockerHub
+        run: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
+          docker push prodanish203/text-toolkit-python
