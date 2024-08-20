@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: text-toolkit-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: text-toolkit
+  template:
+    metadata:
+      labels:
+        app: text-toolkit
+    spec:
+      containers:
+        - name: text-toolkit-container
+          image: prodanish203/text-toolkit-python
+          ports:
+            - containerPort: 8000
