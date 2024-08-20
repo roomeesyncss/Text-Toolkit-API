@@ -169,6 +169,13 @@ def get_translator(target_language: str):
 
 
 # Endpoints
+@app.get("/")
+async def greetings_hello_world():
+    try:
+        return {"Hello world from Python"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 @app.post("/text-manipulation/remove-tags/json", response_model=RemoveTagsResponse, tags=["Remove Tags"])
 async def remove_tags_json_api(data: RemoveTagsRequest):
     try:
