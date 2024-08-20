@@ -1,0 +1,20 @@
+name: Docker Build and Push
+
+on:
+  [workflow_dispatch]
+
+
+jobs:
+    publish_image:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Build Docker image
+              run: docker build -t prodanish203/text-toolkit-python .
+
+            - name: Push to DockerHub
+              run: |
+                docker push prodanish203/text-toolkit-python
