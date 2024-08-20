@@ -5,3 +5,4 @@ An API that provides various text manipulation and analysis functionalities. It 
 # DevOpsified the project
 - Containerized the application using Docker
 - Docker image repo: `prodanish203/text-toolkit-python`
+- Configured a Kubernetes cluster to manage deployment and service
